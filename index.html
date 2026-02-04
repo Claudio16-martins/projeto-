@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skyrim Forge - Forjado nas Montanhas</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Uncial+Antiqua&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="fx-sky">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
+  <header class="hero" id="home">
+    <nav class="nav">
+      <div class="logo">Skyrim Forge</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#perfil">Perfil</a></li>
+        <li><a href="#builds">Builds</a></li>
+        <li><a href="#mods">Mods</a></li>
+        <li><a href="#chat">Chat IA</a></li>
+        <li><a href="#missoes">Missões</a></li>
+        <li><a href="#comunidade">Comunidade</a></li>
+      </ul>
+      <button id="toggle-audio" class="ghost">🔊 Sons</button>
+    </nav>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="rune">ᚠ ᛟ ᚱ ᚷ ᛖ</p>
+        <h1>Forjado nas Montanhas de Skyrim</h1>
+        <p>Entre no salão dos Dovahkiin. Builds épicas, missões personalizadas e a forja de lendas.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#builds">Explorar</a>
+          <a class="btn outline" href="#comunidade">Guildas</a>
+          <a class="btn outline" href="#builds">Builds</a>
+          <a class="btn outline" href="#mods">Mods</a>
+          <a class="btn outline" href="#chat">Comunidade</a>
+        </div>
+      </div>
+      <div class="dragon-card">
+        <div class="dragon"></div>
+        <div class="sigils">
+          <span>ᛗ</span><span>ᛞ</span><span>ᚷ</span>
+        </div>
+        <p>Dragão guardião das Montanhas Cinzentas</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="perfil">
+      <div class="section-title">
+        <h2>Sistema de Login e Perfil</h2>
+        <p>Registre sua lenda e acompanhe a jornada do seu personagem.</p>
+      </div>
+      <div class="grid two">
+        <form id="profile-form" class="panel">
+          <h3>Criar perfil</h3>
+          <label>Nome do personagem
+            <input type="text" name="name" placeholder="Dovahkiin" required />
+          </label>
+          <label>Classe
+            <select name="classe" required>
+              <option value="Guerreiro">Guerreiro</option>
+              <option value="Mago">Mago</option>
+              <option value="Ladino">Ladino</option>
+              <option value="Arqueiro">Arqueiro</option>
+            </select>
+          </label>
+          <label>Avatar
+            <input type="url" name="avatar" placeholder="https://..." />
+          </label>
+          <label>Nível
+            <input type="number" name="nivel" min="1" max="81" value="12" />
+          </label>
+          <label>XP Atual
+            <input type="number" name="xp" min="0" value="2450" />
+          </label>
+          <button class="btn" type="submit">Salvar perfil</button>
+        </form>
+        <div class="panel profile-display">
+          <h3>Seu retrato</h3>
+          <div class="avatar" id="profile-avatar">ᛞ</div>
+          <h4 id="profile-name">Sem herói registrado</h4>
+          <p id="profile-class">Classe: —</p>
+          <div class="stats">
+            <div>
+              <span>Nível</span>
+              <strong id="profile-level">0</strong>
+            </div>
+            <div>
+              <span>XP</span>
+              <strong id="profile-xp">0</strong>
+            </div>
+            <div>
+              <span>Conquistas</span>
+              <strong id="profile-achievements">0</strong>
+            </div>
+          </div>
+          <div class="titles">
+            <h4>Títulos</h4>
+            <div id="title-list" class="tag-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="builds">
+      <div class="section-title">
+        <h2>Área de Builds</h2>
+        <p>Monte sua build lendária, distribua pontos e enfrente o simulador.</p>
+      </div>
+      <div class="grid three">
+        <div class="panel">
+          <h3>Criador de personagem</h3>
+          <div class="stat-row">
+            <span>Força</span>
+            <input type="range" min="0" max="100" value="45" data-stat="forca" />
+            <strong id="forca">45</strong>
+          </div>
+          <div class="stat-row">
+            <span>Magia</span>
+            <input type="range" min="0" max="100" value="35" data-stat="magia" />
+            <strong id="magia">35</strong>
+          </div>
+          <div class="stat-row">
+            <span>Furtividade</span>
+            <input type="range" min="0" max="100" value="20" data-stat="furtividade" />
+            <strong id="furtividade">20</strong>
+          </div>
+          <button class="btn outline" id="save-build">Salvar build</button>
+        </div>
+        <div class="panel">
+          <h3>Simulador de combate</h3>
+          <p>Teste o dano estimado com base na sua distribuição.</p>
+          <div class="sim-output" id="combat-output">Ataque lendário: 0</div>
+          <button class="btn" id="simulate">Simular combate</button>
+          <div class="tag-list" id="skills">
+            <span>Espada Ancestral</span>
+            <span>Grito de Dragão</span>
+            <span>Armadura Ébano</span>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Ranking de Builds</h3>
+          <ol id="build-ranking" class="ranking"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mods">
+      <div class="section-title">
+        <h2>Biblioteca de Mods</h2>
+        <p>Escolha seus mods favoritos, avalie e simule downloads.</p>
+      </div>
+      <div class="panel">
+        <div class="mods-controls">
+          <input id="mod-search" type="text" placeholder="Buscar mods..." />
+          <select id="mod-filter">
+            <option value="all">Todos</option>
+            <option value="visual">Visuais</option>
+            <option value="combat">Combate</option>
+            <option value="quest">Missões</option>
+          </select>
+        </div>
+        <div id="mods-list" class="mods-list"></div>
+      </div>
+    </section>
+
+    <section class="section" id="chat">
+      <div class="section-title">
+        <h2>Chat com IA - Mestre dos Dragões</h2>
+        <p>Converse com um NPC sábio de Skyrim e receba missões personalizadas.</p>
+      </div>
+      <div class="panel chat-panel">
+        <div id="chat-log" class="chat-log"></div>
+        <form id="chat-form" class="chat-form">
+          <input type="text" name="message" placeholder="Pergunte ao mestre dos dragões..." required />
+          <button class="btn" type="submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="missoes">
+      <div class="section-title">
+        <h2>Sistema de Missões</h2>
+        <p>Missões diárias, recompensas e inventário do aventureiro.</p>
+      </div>
+      <div class="grid two">
+        <div class="panel">
+          <h3>Missões ativas</h3>
+          <ul id="quest-list" class="quest-list"></ul>
+          <button class="btn outline" id="new-quest">Gerar missão</button>
+        </div>
+        <div class="panel">
+          <h3>Inventário e recompensas</h3>
+          <div id="inventory" class="inventory"></div>
+          <p class="muted">Modo RPG offline: <strong id="offline-status">Desativado</strong></p>
+          <button class="btn" id="toggle-offline">Alternar modo offline</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="comunidade">
+      <div class="section-title">
+        <h2>Comunidade</h2>
+        <p>Fórum, posts, curtidas e reputação.</p>
+      </div>
+      <div class="grid two">
+        <div class="panel">
+          <h3>Fórum de Guildas</h3>
+          <form id="post-form">
+            <input type="text" name="title" placeholder="Título do post" required />
+            <textarea name="content" rows="3" placeholder="Compartilhe sua aventura..." required></textarea>
+            <button class="btn" type="submit">Publicar</button>
+          </form>
+          <div id="posts" class="posts"></div>
+        </div>
+        <div class="panel">
+          <h3>Mapa Interativo de Skyrim</h3>
+          <div class="map" id="map">
+            <div class="map-node" data-location="Whiterun">Whiterun</div>
+            <div class="map-node" data-location="Solitude">Solitude</div>
+            <div class="map-node" data-location="Riften">Riften</div>
+            <div class="map-node" data-location="Winterhold">Winterhold</div>
+          </div>
+          <p id="map-info" class="muted">Selecione um território para descobrir segredos.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Skyrim Forge • Todos os direitos reservados • Em honra aos Nove Divinos</p>
+    <button id="easter-egg" class="ghost">?</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
